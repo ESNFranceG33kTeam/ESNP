@@ -11,3 +11,13 @@ role :db,         domain, :primary => true       # This is where Symfony2 migrat
 
 # conserver le app_dev.php
 set :controllers_to_clear, []
+
+#Deploy Strategy
+set :deploy_via, :copy
+set :deploy_via, :rsync_with_remote_cache
+set :copy_cache, "/tmp/#{application}"
+set :copy_exclude, [".git/*"]
+set :copy_compression, :gzip
+
+set :composer_options, "--verbose --prefer-dist --optimize-autoloader --no-progress"
+set :php_bin, "/usr/local/php5.5/bin/php"

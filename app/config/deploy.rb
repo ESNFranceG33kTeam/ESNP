@@ -38,7 +38,6 @@ set :shared_files,          ["#{app_path}/config/parameters.yml"]
 set :writable_dirs,         ["#{app_path}/logs", "#{app_path}/cache"]
 set :interactive_mode,      false
 set :dump_assetic_assets,   false
-set :composer_options, "--verbose --prefer-dist --optimize-autoloader --no-progress"
 
 logger.level = Logger::MAX_LEVEL
 
@@ -52,4 +51,4 @@ logger.level = Logger::MAX_LEVEL
 #after "symfony:cache:warmup", "symfony:doctrine:migrations:migrate"
 
 # Run deployment
-after "deploy", "deploy:cleanup" # Clean old releases at the end
+#after "deploy", "deploy:cleanup" # Clean old releases at the end
