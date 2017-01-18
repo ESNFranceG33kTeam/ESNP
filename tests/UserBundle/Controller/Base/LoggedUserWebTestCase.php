@@ -2,18 +2,20 @@
 
 namespace Tests\UserBundle\Controller\Base;
 
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 use Symfony\Bundle\FrameworkBundle\Client;
+use UserBundle\Entity\User;
 
 class LoggedUserWebTestCase extends WebTestCase
 {
     /**
      * @var Client
      */
-    private $client = null;
+    protected $client = null;
 
     /**
      * Set up client
@@ -35,25 +37,40 @@ class LoggedUserWebTestCase extends WebTestCase
         $this->assertEquals(301, $this->client->getResponse()->getStatusCode());
     }
 
-    public function testLogin(){
-        $this->logIn();
+    /**
+     * LogIn as an user
+     */
+    public function logInUser(){
+        $username = $this->client->getContainer()->getParameter('test_user');
+        $password = $this->client->getContainer()->getParameter('test_pwd');
 
-        $crawler = $this->client->request('GET', '/user');
-
-        $this->assertTrue($this->client->getResponse()->isSuccessful());
+        $this->logIn($username, $password);
     }
 
-    private function logIn()
+    /**
+     * LogIn as an admin
+     */
+    public function logInAdmin(){
+        $username = $this->client->getContainer()->getParameter('test_admin_user');
+        $password = $this->client->getContainer()->getParameter('test_admin_pwd');
+
+        $this->logIn($username, $password);
+    }
+
+    /**
+     * @param $username
+     * @param $password
+     */
+    private function logIn($username, $password)
     {
-        $session = $this->client->getContainer()->get('session');
+        $crawler = $this->client->request('GET', '/login');
 
-        $firewall = 'main';
+        $form = $crawler->selectButton('_submit')->form(array(
+            '_username' => $username,
+            '_password' => $password,
+        ));
 
-        $token = new UsernamePasswordToken('admin', null, $firewall, array('ROLE_USER'));
-        $session->set('_security_'.$firewall, serialize($token));
-        $session->save();
-
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+        $this->client->submit($form);
+        $this->client->followRedirect();
     }
 }
