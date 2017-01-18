@@ -6,16 +6,24 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class DefaultController
+ * @package AppBundle\Controller
+ */
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="landingpage")
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
+        if ($this->getUser()) {
+            $route = $this->getUser()->hasRole('ROLE_ADMIN') ? "admin" : "user";
+            $route .= "_homepage";
+
+            return $this->redirectToRoute($route);
+        }
+
+        return $this->render('AppBundle::landing.html.twig');
     }
 }
