@@ -1,0 +1,7 @@
+parameters:
+    database_user: travis
+    database_password: ~
+    test_admin_user: admin
+    test_admin_pwd: admin
+    test_user: user
+    test_pwd: user

@@ -19,3 +19,9 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     locale: fr
+
+    # Test users
+    test_admin_user: admin
+    test_admin_pwd: admin
+    test_user: user
+    test_pwd: user
