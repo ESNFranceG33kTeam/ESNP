@@ -14,9 +14,10 @@ cache:
 
 before_install:
   - cp app/config/parameters.yml.travis app/config/parameters.yml
+  - composer install
   - php app/console doctrine:database:create --env=test
   - php app/console doctrine:schema:create --env=test
-  - composer install
+
 
 script:
   - phpunit
