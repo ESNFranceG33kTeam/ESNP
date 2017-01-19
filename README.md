@@ -1,6 +1,8 @@
 ESNP - ESN NP Android App Backend
 ===
 
+[![Build Status](https://travis-ci.org/ESNFranceG33kTeam/ESNP.svg?branch=master)](https://travis-ci.org/ESNFranceG33kTeam/ESNP)
+
 # How do I get set up?
 
 ## Installation
