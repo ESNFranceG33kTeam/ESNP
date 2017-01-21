@@ -48,7 +48,7 @@
             "@symfony-scripts"
         ],
         "post-update-cmd": [
-            "@symfony-scripts",
+            "@symfony-scripts"
         ]
     },
     "config": {
