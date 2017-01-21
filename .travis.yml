@@ -16,7 +16,7 @@ before_install:
   - cp app/config/parameters.yml.travis app/config/parameters.yml
   - mysql -e 'CREATE DATABASE esnp;'
   - composer install --dev --no-interaction --prefer-source
-  - app/console doctrine:fixtures:load
+  - app/console doctrine:fixtures:load -q
 
 script:
   - phpunit --coverage-text
