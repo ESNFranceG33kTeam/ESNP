@@ -14,12 +14,13 @@ cache:
 
 before_install:
   - cp app/config/parameters.yml.travis app/config/parameters.yml
+  - mysql -e 'CREATE DATABASE esnp;'
   - composer install --dev --no-interaction --prefer-source
   - app/console doctrine:database:create --env=test --no-interaction --quiet
   - app/console cache:warmup --env=test --quiet
 
 script:
-  - phpunit
+  - phpunit --coverage-text
 
 notifications:
   email:
@@ -27,6 +28,6 @@ notifications:
 notifications:
   email:
     recipients:
-      - webmaster@esnlille.fr
+      - jeremie.samson@ix.esnlille.fr
     on_success: [never]
     on_failure: [always]
