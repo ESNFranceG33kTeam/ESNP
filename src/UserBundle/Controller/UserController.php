@@ -19,6 +19,8 @@ class UserController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render("UserBundle:user:index.html.twig");
+        return $this->render('UserBundle:user:index.html.twig', array(
+            'ocmembers' =>$this->getDoctrine()->getManager()->getRepository('AppBundle:OCMember')->findAll()
+        ));
     }
 }

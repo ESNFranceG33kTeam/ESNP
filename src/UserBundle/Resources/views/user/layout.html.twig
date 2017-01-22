@@ -1,0 +1,8 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block menu %}
+    <ul>
+        <li><a href="{{ path('user_homepage') }}">Dashboard</a></li>
+        <li><a href="{{ path('new_oc_member') }}">Add oc member</a></li>
+    </ul>
+{% endblock %}

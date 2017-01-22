@@ -4,8 +4,11 @@
     {% set log_route = app.user ? 'fos_user_security_logout' : 'fos_user_security_login' %}
     {% set log_text = app.user ? 'Logout' : 'Login' %}
 
-    Please <a href="{{ path(log_route) }}">{{ log_text }}</a>
+    <p>
+        <a href="{{ path(log_route) }}">{{ log_text }}</a>
+    </p>
 
-   {% block content %}
-   {% endblock %}
+   {% block menu %}{% endblock %}
+
+   {% block content %}{% endblock %}
 {% endblock %}

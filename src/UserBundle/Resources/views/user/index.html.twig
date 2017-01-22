@@ -1,5 +1,7 @@
-{% extends 'AppBundle::layout.html.twig' %}
+{% extends 'UserBundle:user:layout.html.twig' %}
 
 {% block content %}
-    Index user
+    {% for ocmember in ocmembers %}
+        {{ ocmember }} <img src="{{ asset('uploads/pictures/' ~ ocmember.picture) }}"> <br>
+    {% endfor %}
 {% endblock %}
