@@ -1,0 +1,5 @@
+api_user:
+    resource: "@ApiBundle/Controller/UserRestController.php"
+    type:     rest
+    defaults:
+        _format: json

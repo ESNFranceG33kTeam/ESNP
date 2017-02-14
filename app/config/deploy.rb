@@ -1,7 +1,7 @@
 # Server
 set :application,           "ESNP"
 set :use_set_permissions,   true
-set :permission_method,     :acl
+set :permission_method,     :chgrp
 set :use_sudo,              false
 set :webserver_user,        "www-data"
 set :use_set_permission,    true
@@ -40,6 +40,33 @@ set :interactive_mode,      false
 set :dump_assetic_assets,   false
 
 logger.level = Logger::MAX_LEVEL
+
+namespace :symfony do
+    namespace :cache do
+        desc "Remove error on cache warmup"
+        task :warmup do
+        end
+    end
+end
+
+task :upload_vendors do
+    system("tar -zcvf vendor.tar.gz vendor")
+    system("scp vendor.tar.gz #{user}@#{domain}:#{deploy_to}/shared/vendor.tar.gz")
+    system("rm vendor.tar.gz")
+    run("tar -zxvf #{deploy_to}/shared/vendor.tar.gz -C #{deploy_to}/shared")
+    run("rm #{deploy_to}/shared/vendor.tar.gz")
+end
+
+namespace :esnp do
+    namespace :vendor do
+        task :copy do
+            run "cp -r #{deploy_to}/shared/vendor #{current_path}/vendor"
+        end
+    end
+end
+
+#after "deploy:setup", "upload_vendors"
+after "upload_vendors", "esnp:vendor:copy"
 
 # Assets
 #before "symfony:cache:warmup", "symfony:assets:install"

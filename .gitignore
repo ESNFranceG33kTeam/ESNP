@@ -1,5 +1,8 @@
-# PhpUnit phar
-/phpunit.phar
+# rsync files
+.rsync_cache
+
+# phar files
+*.phar
 
 # PHPStorm
 /.idea/

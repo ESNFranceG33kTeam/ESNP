@@ -1,0 +1,9 @@
+_api:
+    resource: routing_api.yml
+
+_fos:
+    resource: routing_fos.yml
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /

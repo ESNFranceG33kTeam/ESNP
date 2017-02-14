@@ -25,3 +25,5 @@ parameters:
     test_admin_pwd: admin
     test_user: user
     test_pwd: user
+
+    pictures_directory: uploads
