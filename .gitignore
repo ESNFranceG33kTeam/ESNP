@@ -1,5 +1,5 @@
 # rsync files
-.rsync_cache
+/.rsync_cache
 
 # phar files
 *.phar

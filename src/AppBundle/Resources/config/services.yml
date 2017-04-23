@@ -2,3 +2,30 @@ services:
     app.file_uploader:
         class: AppBundle\Service\FileUploader
         arguments: ['%pictures_directory%']
+
+    app.admin.event:
+        class: AppBundle\Admin\EventAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Events", label: "Event" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Event
+            - ~
+
+    app.admin.ocmember:
+        class: AppBundle\Admin\OCMemberAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Tabs", label: "Member" }
+        arguments:
+            - ~
+            - AppBundle\Entity\OCMember
+            - ~
+
+    app.admin.tips:
+        class: AppBundle\Admin\TipsAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Tabs", label: "Tips" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Tips
+            - ~

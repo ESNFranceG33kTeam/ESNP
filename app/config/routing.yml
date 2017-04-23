@@ -1,7 +1,12 @@
-user:
-    resource: "@UserBundle/Controller/"
-    type:     annotation
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /

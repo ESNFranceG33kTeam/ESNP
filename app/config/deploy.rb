@@ -9,7 +9,7 @@ set :use_composer, false
 default_run_options[:pty] = true
 
 # Multistaging
-set :stages,                %w(prod)
+set :stages,                %w(prod dev)
 set :default_stage,         "prod"
 set :stage_dir,             "app/config/deploy"
 

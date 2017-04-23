@@ -48,6 +48,13 @@ class OCMember
     private $picture;
 
     /**
+     * @var Event
+     *
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="tips")
+     */
+    private $event;
+
+    /**
      * Get id
      *
      * @return int
@@ -120,7 +127,23 @@ class OCMember
     {
         $this->picture = $picture;
     }
-    
+
+    /**
+     * @return Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param Event $event
+     */
+    public function setEvent($event)
+    {
+        $this->event = $event;
+    }
+
     /**
      * @return string
      */
